@@ -104,16 +104,24 @@ Open **[http://127.0.0.1:5173](http://127.0.0.1:5173)** in your browser.
 
 For action $a$, world $w$, and model distribution $p$:
 
+```text
+expected_loss(a) = Σ p(w) × loss(a, w)
+stressed_loss(a) = max[q: TV(q, p) ≤ ε] Σ q(w) × loss(a, w)
+question_value   = best_stressed_loss_now
+                   − Σ P(answer) × best_stressed_loss_after_answer
+                   − interruption_cost
+```
+
 $$
-\text{expected\_loss}(a) = \sum_{w} p(w) \times \text{loss}(a, w)
+\mathcal{L}_{\mathrm{expected}}(a) = \sum_{w} p(w) \cdot \mathcal{L}(a, w)
 $$
 
 $$
-\text{stressed\_loss}(a) = \max_{q:\, \text{TV}(q, p) \le \varepsilon} \sum_{w} q(w) \times \text{loss}(a, w)
+\mathcal{L}_{\mathrm{stressed}}(a) = \max_{q:\, \mathrm{TV}(q, p) \le \varepsilon} \sum_{w} q(w) \cdot \mathcal{L}(a, w)
 $$
 
 $$
-\text{question\_value} = \min_{a} \text{stressed\_loss}(a) - \sum_{k} P(\text{answer}_k) \min_{a} \text{stressed\_loss}(a \mid \text{answer}_k) - \text{cost}
+\mathcal{V}(\text{question}) = \min_{a} \mathcal{L}_{\mathrm{stressed}}(a) - \sum_{k} P(\text{answer}_k) \min_{a} \mathcal{L}_{\mathrm{stressed}}(a \mid \text{answer}_k) - \text{cost}
 $$
 
 ### Key Guarantees
