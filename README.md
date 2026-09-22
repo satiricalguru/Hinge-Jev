@@ -78,8 +78,8 @@ Requires Node.js 22+.
 
 ```bash
 # 1. Clone & install
-git clone https://github.com/satiricalguru/hinge-jev.git
-cd hinge-jev
+git clone https://github.com/satiricalguru/Hinge-Jev.git
+cd Hinge-Jev
 npm install
 
 # 2. Start the local studio (runs immediately without any API key!)
@@ -212,7 +212,7 @@ npm run evaluate -- --replay path/to/receipt.json
 ## 📂 Repository Structure
 
 ```text
-hinge-jev/
+Hinge-Jev/
 ├── docs/                   # Visual documentation & generated previews
 │   ├── banner.gif          # Animated project banner
 │   ├── studio.png          # Light mode workbench capture
