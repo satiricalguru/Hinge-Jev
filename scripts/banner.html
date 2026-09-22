@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@500;600;700&display=swap");
+
+      body {
+        width: 1200px;
+        height: 400px;
+        background: #e5e8e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          sans-serif;
+      }
+
+      .banner-card {
+        width: 1180px;
+        height: 380px;
+        background: #f2f4ee;
+        border-radius: 24px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 16px 48px -12px rgba(26, 38, 28, 0.12);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding: 0 54px;
+      }
+
+      /* Subtle background grid */
+      .banner-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(45, 68, 48, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(45, 68, 48, 0.06) 1px, transparent 1px);
+        background-size: 32px 32px;
+        pointer-events: none;
+      }
+
+      .banner-left {
+        flex: 0 0 460px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 290px;
+      }
+
+      .top-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #4a5a4d;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .top-tag span.badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #78a900;
+        box-shadow: 0 0 10px #78a900;
+        animation: pulseDot 2s infinite ease-in-out;
+      }
+
+      @keyframes pulseDot {
+        0%,
+        100% {
+          opacity: 0.7;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.3);
+        }
+      }
+
+      .main-title {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        color: #1a221c;
+        text-transform: uppercase;
+        margin: 10px 0;
+      }
+
+      .main-title span.title-accent {
+        color: #78a900;
+        display: inline-block;
+      }
+
+      .bottom-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #5c6c5f;
+        display: flex;
+        gap: 12px;
+      }
+
+      /* Center dynamic energy lines */
+      .center-streaks {
+        position: absolute;
+        left: 500px;
+        top: 48%;
+        transform: translateY(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .streak {
+        height: 5.5px;
+        border-radius: 4px;
+        background: #e8633a;
+        animation: streakAnim 3s infinite cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .streak:nth-child(1) {
+        width: 32px;
+        margin-left: 20px;
+        animation-delay: 0.1s;
+      }
+      .streak:nth-child(2) {
+        width: 72px;
+        animation-delay: 0.2s;
+      }
+      .streak:nth-child(3) {
+        width: 44px;
+        margin-left: 12px;
+        animation-delay: 0.3s;
+      }
+
+      @keyframes streakAnim {
+        0%,
+        100% {
+          transform: translateX(0);
+          opacity: 0.85;
+        }
+        50% {
+          transform: translateX(14px);
+          opacity: 1;
+        }
+      }
+
+      /* Right tilted browser window */
+      .window-container {
+        position: absolute;
+        right: 46px;
+        top: 36px;
+        width: 530px;
+        height: 312px;
+        background: #ffffff;
+        border: 2.8px solid #1a221c;
+        border-radius: 18px;
+        transform: rotate(3.2deg);
+        box-shadow: 18px 24px 44px -10px rgba(22, 34, 25, 0.22);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 3;
+        animation: windowFloat 6s infinite ease-in-out;
+      }
+
+      @keyframes windowFloat {
+        0%,
+        100% {
+          transform: rotate(3.2deg) translateY(0);
+        }
+        50% {
+          transform: rotate(2.6deg) translateY(-6px);
+        }
+      }
+
+      .window-header {
+        height: 36px;
+        background: #ffffff;
+        border-bottom: 2px solid #1a221c;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 1.8px solid #1a221c;
+      }
+      .dot:nth-child(1) {
+        background: #ff5f56;
+      }
+      .dot:nth-child(2) {
+        background: #ffbd2e;
+      }
+      .dot:nth-child(3) {
+        background: #27c93f;
+      }
+
+      .window-content {
+        flex: 1;
+        background: #fafbfa;
+        position: relative;
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background-image:
+          linear-gradient(rgba(24, 78, 132, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(24, 78, 132, 0.08) 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      .query-pill {
+        background: #e9f5d6;
+        border: 1.5px solid #78a900;
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        color: #2e441b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .query-pill span.question-indicator {
+        background: #78a900;
+        color: #ffffff;
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+      }
+
+      .decision-grid {
+        display: flex;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .card {
+        flex: 1;
+        background: #ffffff;
+        border: 2px solid #dbe2d1;
+        border-radius: 10px;
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        position: relative;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        font-weight: 700;
+        color: #7b8a7c;
+      }
+
+      .card-badge {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 8px;
+        font-weight: 800;
+        padding: 1.5px 5px;
+        border-radius: 3px;
+        background: #1a221c;
+        color: #ffffff;
+      }
+
+      .card-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: #1a221c;
+        line-height: 1.15;
+      }
+
+      .card-loss {
+        font-size: 11px;
+        color: #5a685c;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .card.active {
+        background: #f1f8e8;
+        border-color: #78a900;
+        box-shadow:
+          0 0 0 2px rgba(120, 169, 0, 0.25),
+          0 8px 20px rgba(120, 169, 0, 0.15);
+        transform: translateY(-2px);
+        animation: cardPulse 3s infinite ease-in-out;
+      }
+
+      @keyframes cardPulse {
+        0%,
+        100% {
+          border-color: #78a900;
+          box-shadow: 0 0 0 2px rgba(120, 169, 0, 0.25);
+        }
+        50% {
+          border-color: #8ed000;
+          box-shadow: 0 0 0 4px rgba(142, 208, 0, 0.45);
+        }
+      }
+
+      .card.active .card-badge {
+        background: #78a900;
+      }
+
+      .window-footer {
+        margin-top: auto;
+        background: #ffffff;
+        border: 1.8px solid #1a221c;
+        border-radius: 8px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .footer-left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #1a221c;
+      }
+
+      .footer-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #e8633a;
+      }
+
+      .footer-action {
+        color: #78a900;
+        font-weight: 800;
+      }
+
+      /* Animated cursor */
+      .cursor-pointer {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        z-index: 10;
+        pointer-events: none;
+        animation: cursorMove 3.5s infinite cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      .cursor-pointer svg {
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+      }
+
+      @keyframes cursorMove {
+        0% {
+          transform: translate(320px, 140px);
+        }
+        35% {
+          transform: translate(110px, 98px);
+        }
+        45% {
+          transform: translate(110px, 98px) scale(0.88);
+        }
+        55% {
+          transform: translate(110px, 98px) scale(1);
+        }
+        85% {
+          transform: translate(110px, 98px);
+        }
+        100% {
+          transform: translate(320px, 140px);
+        }
+      }
+
+      /* Click wave ring */
+      .click-wave {
+        position: absolute;
+        left: 110px;
+        top: 98px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 2px solid #78a900;
+        pointer-events: none;
+        opacity: 0;
+        animation: waveAnim 3.5s infinite;
+      }
+
+      @keyframes waveAnim {
+        0%,
+        42% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        45% {
+          opacity: 0.9;
+          transform: scale(1);
+        }
+        65% {
+          opacity: 0;
+          transform: scale(7.5);
+          border-color: #8ed000;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner-card">
+      <div class="banner-grid"></div>
+
+      <div class="banner-left">
+        <div class="top-tag">
+          <span class="badge-dot"></span>
+          DECISION THEORY × TYPESAFE JEV
+        </div>
+
+        <div class="main-title">
+          HINGE<br />
+          <span class="title-accent">DECISIONS</span>
+        </div>
+
+        <div class="bottom-tag">
+          <span>PRICE MISTAKES</span> · <span>ASK WHAT MATTERS</span> ·
+          <span>ZERO GUESSWORK</span>
+        </div>
+      </div>
+
+      <div class="center-streaks">
+        <div class="streak"></div>
+        <div class="streak"></div>
+        <div class="streak"></div>
+      </div>
+
+      <div class="window-container">
+        <div class="window-header">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="window-content">
+          <div class="query-pill">
+            <span>“Clean up old Atlas records.”</span>
+            <span class="question-indicator">TURNING POINT</span>
+          </div>
+
+          <div class="decision-grid">
+            <div class="card active">
+              <div class="card-header">
+                <span class="card-num">01 · STAGING</span>
+                <span class="card-badge">LOWEST</span>
+              </div>
+              <div class="card-title">Archive Staging</div>
+              <div class="card-loss">Loss: 11.0 pts (38%)</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-num">02 · PROD</span>
+              </div>
+              <div class="card-title">Archive Prod</div>
+              <div class="card-loss">Loss: 45.0 pts (20%)</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-num">03 · PERM</span>
+              </div>
+              <div class="card-title">Delete Staging</div>
+              <div class="card-loss">Loss: 41.8 pts (30%)</div>
+            </div>
+          </div>
+
+          <div class="window-footer">
+            <div class="footer-left">
+              <span class="footer-dot"></span>
+              <span>WHICH CLARIFICATION IS WORTH THE INTERRUPTION?</span>
+            </div>
+            <span class="footer-action">ASK: ENVIRONMENT →</span>
+          </div>
+
+          <div class="click-wave"></div>
+          <div class="cursor-pointer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 2L19.5 12L12 14L9 21.5L4 2Z"
+                fill="#e8633a"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

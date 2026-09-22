@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&amp;family=JetBrains+Mono:wght@700;800&amp;display=swap');
+      
+      .bg-rect { fill: #f2f4ee; stroke: rgba(0,0,0,0.08); stroke-width: 1.5; rx: 24; }
+      .grid-line { stroke: rgba(45, 68, 48, 0.06); stroke-width: 1; }
+      .top-tag { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; fill: #4a5a4d; }
+      .title-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 72px; font-weight: 900; letter-spacing: -0.04em; fill: #1a221c; }
+      .title-accent { fill: #78a900; }
+      .bottom-tag { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; fill: #5c6c5f; }
+      
+      .window-box { fill: #ffffff; stroke: #1a221c; stroke-width: 2.8; rx: 18; }
+      .window-bar { fill: #ffffff; stroke: #1a221c; stroke-width: 2.8; }
+      .window-inner { fill: #fafbfa; }
+      
+      .pill-box { fill: #e9f5d6; stroke: #78a900; stroke-width: 1.5; rx: 7; }
+      .pill-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; fill: #2e441b; }
+      .pill-badge { fill: #78a900; rx: 4; }
+      .pill-badge-text { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 800; fill: #ffffff; }
+      
+      .card-bg { fill: #ffffff; stroke: #dbe2d1; stroke-width: 1.8; rx: 10; }
+      .card-active { fill: #f1f8e8; stroke: #78a900; stroke-width: 2.2; }
+      .card-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; fill: #7b8a7c; }
+      .card-badge { fill: #78a900; rx: 3; }
+      .card-badge-dark { fill: #1a221c; rx: 3; }
+      .badge-text { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 800; fill: #ffffff; }
+      .card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; fill: #1a221c; }
+      .card-loss { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; fill: #5a685c; }
+      
+      .footer-box { fill: #ffffff; stroke: #1a221c; stroke-width: 1.8; rx: 8; }
+      .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; fill: #1a221c; }
+      .footer-action { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 800; fill: #78a900; }
+      
+      /* SVG animations */
+      @keyframes pulseDot {
+        0%, 100% { opacity: 0.6; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.4); }
+      }
+      .anim-dot { transform-origin: 64px 61px; animation: pulseDot 2s infinite ease-in-out; }
+      
+      @keyframes streakFlow {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(12px); }
+      }
+      .streak-1 { animation: streakFlow 3s infinite cubic-bezier(0.16, 1, 0.3, 1) 0.1s; }
+      .streak-2 { animation: streakFlow 3s infinite cubic-bezier(0.16, 1, 0.3, 1) 0.2s; }
+      .streak-3 { animation: streakFlow 3s infinite cubic-bezier(0.16, 1, 0.3, 1) 0.3s; }
+      
+      @keyframes cursorMotion {
+        0% { transform: translate(320px, 140px); }
+        35% { transform: translate(110px, 98px); }
+        45% { transform: translate(110px, 98px) scale(0.88); }
+        55% { transform: translate(110px, 98px) scale(1); }
+        85% { transform: translate(110px, 98px); }
+        100% { transform: translate(320px, 140px); }
+      }
+      .anim-cursor { animation: cursorMotion 3.5s infinite cubic-bezier(0.25, 1, 0.5, 1); }
+      
+      @keyframes rippleWave {
+        0%, 42% { opacity: 0; transform: scale(0.4); }
+        45% { opacity: 0.85; transform: scale(1); }
+        65% { opacity: 0; transform: scale(7); stroke: #8ed000; }
+        100% { opacity: 0; transform: scale(7.5); }
+      }
+      .anim-ripple { transform-origin: 110px 98px; animation: rippleWave 3.5s infinite; }
+      
+      @keyframes cardGlow {
+        0%, 100% { stroke: #78a900; stroke-width: 2.2; }
+        50% { stroke: #99db04; stroke-width: 3.5; }
+      }
+      .card-active { animation: cardGlow 3s infinite ease-in-out; }
+    </style>
+    
+    <pattern id="gridPattern" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" class="grid-line" />
+    </pattern>
+    <pattern id="innerGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(24, 78, 132, 0.08)" stroke-width="1" />
+    </pattern>
+    
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="12" dy="20" stdDeviation="18" flood-color="#162219" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- Banner Card Background -->
+  <rect x="10" y="10" width="1180" height="380" class="bg-rect" />
+  <rect x="10" y="10" width="1180" height="380" fill="url(#gridPattern)" rx="24" />
+
+  <!-- Left Content -->
+  <g transform="translate(64, 65)">
+    <!-- Top Tag -->
+    <circle cx="0" cy="-4" r="4.5" fill="#78a900" class="anim-dot" />
+    <text x="16" y="0" class="top-tag">DECISION THEORY × TYPESAFE JEV</text>
+    
+    <!-- Title -->
+    <text x="0" y="80" class="title-text">HINGE</text>
+    <text x="0" y="150" class="title-text title-accent">DECISIONS</text>
+    
+    <!-- Bottom Tag -->
+    <text x="0" y="240" class="bottom-tag">PRICE MISTAKES · ONE-STEP CLARIFICATION · ZERO REGRET</text>
+  </g>
+
+  <!-- Dynamic Center Streaks -->
+  <g transform="translate(530, 185)">
+    <rect x="20" y="0" width="32" height="5.5" rx="3" fill="#e8633a" class="streak-1" />
+    <rect x="0" y="14" width="76" height="5.5" rx="3" fill="#e8633a" class="streak-2" />
+    <rect x="14" y="28" width="46" height="5.5" rx="3" fill="#e8633a" class="streak-3" />
+  </g>
+
+  <!-- Right Tilted Browser Window Mockup -->
+  <g transform="translate(630, 36) rotate(3.2)" filter="url(#shadow)">
+    <!-- Window Body -->
+    <rect x="0" y="0" width="510" height="308" class="window-box" />
+    
+    <!-- Window Header -->
+    <rect x="0" y="0" width="510" height="34" class="window-bar" rx="18" />
+    <rect x="0" y="18" width="510" height="16" fill="#ffffff" />
+    <line x1="0" y1="34" x2="510" y2="34" stroke="#1a221c" stroke-width="2" />
+    
+    <circle cx="20" cy="17" r="4.5" fill="#ff5f56" stroke="#1a221c" stroke-width="1.5" />
+    <circle cx="34" cy="17" r="4.5" fill="#ffbd2e" stroke="#1a221c" stroke-width="1.5" />
+    <circle cx="48" cy="17" r="4.5" fill="#27c93f" stroke="#1a221c" stroke-width="1.5" />
+
+    <!-- Window Inner Content -->
+    <rect x="2" y="36" width="506" height="270" class="window-inner" />
+    <rect x="2" y="36" width="506" height="270" fill="url(#innerGrid)" />
+
+    <!-- Search / Prompt Pill -->
+    <g transform="translate(18, 52)">
+      <rect x="0" y="0" width="470" height="32" class="pill-box" />
+      <text x="14" y="20" class="pill-text">“Clean up old Atlas records.”</text>
+      <rect x="365" y="6" width="92" height="20" class="pill-badge" />
+      <text x="373" y="19.5" class="pill-badge-text">TURNING POINT</text>
+    </g>
+
+    <!-- Decision Cards Grid -->
+    <g transform="translate(18, 98)">
+      <!-- Card 1 (Active) -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="150" height="116" class="card-active" />
+        <text x="10" y="20" class="card-num">01 · STAGING</text>
+        <rect x="94" y="9" width="46" height="14" class="card-badge" />
+        <text x="101" y="19" class="badge-text">LOWEST</text>
+        
+        <text x="10" y="52" class="card-title">Archive Staging</text>
+        <text x="10" y="80" class="card-loss">Loss: 11.0 pts</text>
+        <text x="10" y="96" class="card-loss">Probability: 38%</text>
+      </g>
+
+      <!-- Card 2 -->
+      <g transform="translate(160, 0)">
+        <rect x="0" y="0" width="150" height="116" class="card-bg" />
+        <text x="10" y="20" class="card-num">02 · PROD</text>
+        <text x="10" y="52" class="card-title">Archive Prod</text>
+        <text x="10" y="80" class="card-loss">Loss: 45.0 pts</text>
+        <text x="10" y="96" class="card-loss">Probability: 20%</text>
+      </g>
+
+      <!-- Card 3 -->
+      <g transform="translate(320, 0)">
+        <rect x="0" y="0" width="150" height="116" class="card-bg" />
+        <text x="10" y="20" class="card-num">03 · PERM</text>
+        <text x="10" y="52" class="card-title">Delete Staging</text>
+        <text x="10" y="80" class="card-loss">Loss: 41.8 pts</text>
+        <text x="10" y="96" class="card-loss">Probability: 30%</text>
+      </g>
+    </g>
+
+    <!-- Window Footer -->
+    <g transform="translate(18, 228)">
+      <rect x="0" y="0" width="470" height="34" class="footer-box" />
+      <circle cx="16" cy="17" r="3.5" fill="#e8633a" />
+      <text x="28" y="20.5" class="footer-text">WHICH CLARIFICATION IS WORTH THE INTERRUPTION?</text>
+      <text x="368" y="20.5" class="footer-action">ASK: ENV →</text>
+    </g>
+
+    <!-- Animated Ripple & Pointer -->
+    <g transform="translate(18, 98)">
+      <circle cx="110" cy="98" r="4" fill="none" stroke="#78a900" stroke-width="2" class="anim-ripple" />
+      <g class="anim-cursor">
+        <path d="M0 0 L15.5 10 L8 12 L5 19.5 Z" fill="#e8633a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>
